@@ -1,0 +1,82 @@
+Answers
+Create table DEPT (
+Q1.
+DEPTNO int(2),
+DNAME varchar(15),
+LOC varchar(10)
+);
+insert into DEPT values 
+(10,'ACCOUNTING','NEW YORK'),
+(20,'RESEARCH', 'DALLAS'),
+(30,'OPERATION', 'BOSTON');
+
+Q2.
+Create table EMP (
+EMPNO int(4),
+ENAME varchar(10),
+JOB varchar(9),
+HIREDATE date,
+SAL float(7,2),
+COMM float(7,2),
+DEPTNO int(2)
+);
+insert into EMP (EMPNO, ENAME, JOB, HIREDATE date,SAL,COMM,DEPTNO)
+values
+(7839,'KING','MANAGER','1991-11-17',5000, NULL,10),
+(7698,'BLAKE','CLERK','1981-05-01',2850, NULL, 30),
+(7782,'CLARK','MANAGER','1981-06-09',2450, NULL, 10),
+(7566,'JONES','CLERK','1981-04-02',2975, NULL, 20),
+(7654,'MARTIN','SALESMAN','1981-09-28',1250,1400, 30),
+(7499,'ALLEN','SALESMAN','1981-02-20',1600, 300, 30);
+
+Q3. 
+QURIES
+Q3.select * from EMP where SAL BETWEEN 2500 AND 5000;
+Q4. SELECT * FROM EMP ORDER BY ENAME desc;
+Q5. SELECT LOWER(JOB)FROM EMP;
+Q6. SELECT ENAME,length(ENAME) FROM EMP;
+Q7. SELECT DEPTNO, COUNT(*) AS 'TOTAL EMPLOYEES' from EMP GROUP BY DEPTNO;
+Q8. SELECT DNAME, ENAME FROM DEPT EMP WHERE DEPT.DEPTNO = EMP.DEPTNO;
+Q9. SELECT INSTR( ENAME,'AR')AS POSITION FROM EMP;
+Q10.SELECT ENAME, SAL*0.2 AS HRA FROM EMP;
+
+SECTION 2
+
+Q2.
+DELIMITER //
+create FUNCTION FUNC1 (
+side1 int,side2 int, side3 int
+)
+returns varchDar(20)
+DETERMINISTIC
+BEGIN
+declare output varchar(20);
+if side1<(side2+side3)AND
+side2<(side1+side3)AND
+side3<(side2+side1) THEN
+SET out ='TRUE'
+ELSE
+SET OUTPUT = ' FALSE';
+END IF;
+RETURN output;
+end ;
+DELIMITER ;
+SELECT FUNC1(10,10,10);
+
+
+Q1.
+
+create TABLE TEMPP(
+string1 varchar(255),
+string2 varchar(255),
+Output varchar(255)
+);
+DELIMITER //
+CREATE PROCEDURE PROC1( IN string1 varchar(40), IN string2 varchar(40))
+begin
+insert into TEMPP select string1, string 2, IF(INSTR (string2,string1),"yes","no");
+select * from TEMPP;
+END ;
+DELIMITER ;
+CALL PROC1('DAC','CDAC');
+
